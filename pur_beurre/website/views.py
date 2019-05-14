@@ -6,3 +6,6 @@ from datetime import datetime
 
 def index(request):
     return render(request, 'website/index.html')
+
+def redirection(request):
+    return redirect('index')
