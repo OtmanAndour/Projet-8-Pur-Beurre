@@ -13,6 +13,8 @@
   <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
   <!-- Google Fonts -->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
 
@@ -20,38 +22,41 @@
   <link href="static/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
   <!-- Theme CSS - Includes Bootstrap -->
-  <link href="static/css/creative.min.css" rel="stylesheet">
+  <link href="static/css/creative.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
 
+  {% block navigation %}
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto my-2 my-lg-0">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-          </li>
-        </ul>
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto my-2 my-lg-0">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>  
+  {% endblock %}
 
+  {% block masthead %}
   <!-- Masthead -->
   <header class="masthead">
     <div class="container h-100">
@@ -67,7 +72,9 @@
       </div>
     </div>
   </header>
+  {% endblock %}
 
+  {% block about_section %}
   <!-- About Section -->
   <section class="page-section bg-primary" id="about">
     <div class="container">
@@ -81,7 +88,9 @@
       </div>
     </div>
   </section>
+  {% endblock %}
 
+  {% block services_section %}
   <!-- Services Section -->
   <section class="page-section" id="services">
     <div class="container">
@@ -119,7 +128,9 @@
       </div>
     </div>
   </section>
+  {% endblock %}
 
+  {% block portfolio %}
   <!-- Portfolio Section -->
   <section id="portfolio">
     <div class="container-fluid p-0">
@@ -205,7 +216,9 @@
       </div>
     </div>
   </section>
+  {% endblock %}
 
+  {% block action %}
   <!-- Call to Action Section -->
   <section class="page-section bg-dark text-white">
     <div class="container text-center">
@@ -213,7 +226,9 @@
       <a class="btn btn-light btn-xl" href="https://startbootstrap.com/themes/creative/">Download Now!</a>
     </div>
   </section>
+  {% endblock %}
 
+  {% block contact %}
   <!-- Contact Section -->
   <section class="page-section" id="contact">
     <div class="container">
@@ -237,13 +252,16 @@
       </div>
     </div>
   </section>
+  {% endblock %}
 
+  {% block footer %}
   <!-- Footer -->
   <footer class="bg-light py-5">
-    <div class="container">
-      <div class="small text-center text-muted">Copyright &copy; 2019 - Start Bootstrap</div>
-    </div>
-  </footer>
+      <div class="container">
+        <div class="small text-center text-muted">Copyright &copy; 2019 - Start Bootstrap</div>
+      </div>
+    </footer>
+  {% endblock %}
 
   <!-- Bootstrap core JavaScript -->
   <script src="static/vendor/jquery/jquery.min.js"></script>
