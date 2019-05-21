@@ -10,13 +10,20 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
 .collapsed-text {
   display: block;
 }
+#search-form {
+  display: none;
+} 
 
 @media screen and (min-width:992px){
   .collapsed-text {
     display: none;
+  }
+  #search-form {
+    display: block;
   }
 }
 
