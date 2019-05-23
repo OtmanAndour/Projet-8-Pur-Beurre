@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, Http404
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+
 from .forms import SignUpForm
 from datetime import datetime
 
@@ -30,3 +32,7 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'website/signup.html', {'form': form})
+
+@login_required
+def account(request):
+    return render(request, 'website/account.html')

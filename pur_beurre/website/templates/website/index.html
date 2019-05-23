@@ -8,23 +8,23 @@
           <a class="navbar-brand js-scroll-trigger" href="{% url 'index' %}">
             <img class="img-fluid" src="static/img/logo.png" width="35" height="35">
           </a>
+          {% if user.is_authenticated %}
+            <span id="welcome" class="navbar-brand mb-0 h1">Bonjour, {{ user.first_name }} !</span>   
+          {% endif %}
           <a id="search-form" class="navbar-brand js-scroll-trigger mx-auto text-center w-25">
-              <form class="form-inline">
+              <form class="form-inline w-100">
                 <input class="form-control mr-sm-2" type="search" placeholder="Chercher" aria-label="Search">
               </form> 
           </a>
-          {% if user.is_authenticated %}
-            <span class="navbar-brand mb-0 h1">Bonjour, {{ user.first_name }} !</span>   
-          {% endif %}
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" title="Mon compte" href="#about">
+                <a class="nav-link js-scroll-trigger" title="Mon compte" href="{% url 'account' %}">
                   <img class="img-fluid" src="static/img/connect.png" width="35" height="35">
-                  <p class="collapsed-text">Se connecter</p>
+                  <p class="collapsed-text">Mon compte</p>
                 </a>
               </li>
               <li class="nav-item">
