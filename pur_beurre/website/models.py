@@ -48,3 +48,29 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
     objects = UserManager()
+
+class Product(models.Model):
+
+    name = models.CharField(max_length=255, verbose_name="Nom du produit")
+    category = models.TextField(verbose_name="Catégories")
+    stores = models.CharField(max_length=100, null=True, verbose_name="Magasins")
+    nutriscore = models.CharField(max_length=1, verbose_name="Score nutritionnel")
+    url = models.URLField(verbose_name="URL du produit", unique=True)
+    image_url = models.URLField(verbose_name="URL de l'image du produit", unique=True)
+    image_small_url = models.URLField(verbose_name="URL de l'image du produit (Thumbnail)", unique=True)
+    energy = models.FloatField(verbose_name="Valeur energétique")
+    sugar = models.FloatField(verbose_name="Sucres pour 100g")
+    salt = models.FloatField(verbose_name="Sels pour 100g")
+    fat = models.FloatField(verbose_name="Gras pour 100g")
+    saturated_fat = models.FloatField(verbose_name="Acides gras saturés pour 100g")
+    sodium = models.FloatField(verbose_name="Sodium pour 100g")
+    proteins = models.FloatField(verbose_name="Protéines pour 100g")
+    carbohydrates = models.FloatField(verbose_name="Glucides pour 100g")
+    saved = models.ManyToManyField(User,verbose_name="Utilisateurs ayant sauvegardés ce produit", default=1)
+
+    class Meta:
+        verbose_name = "produit"
+        verbose_name_plural = "produits"
+    
+    def __str__(self):
+        return self.name
