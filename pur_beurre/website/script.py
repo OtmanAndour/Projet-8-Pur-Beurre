@@ -8,9 +8,6 @@ import requests
 import json
 from .models import User, Product
 
-REQUEST_NUMBER = 15
-
-
 
 def api_request(i):
     """Calls the OFF API and retrieves 1000 products per page"""
