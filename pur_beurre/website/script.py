@@ -3,10 +3,11 @@
 
 """This file fills the Product model with products retrieved for the OFF API"""
 
-import threading
+import psycopg2
+from django.db.utils import IntegrityError, DataError
 import requests
 import json
-from .models import User, Product
+from website.models import User, Product
 
 
 def api_request(i):
@@ -58,7 +59,10 @@ def product_nutriments(product):
         'carbohydrates_100g' : ''
     }
     for key in datas.keys():
-        datas[key] = product['nutriments'][key]
+        try:
+            datas[key] = product['nutriments'][key]
+        except KeyError:
+            pass
     return datas
 
 def product_infos(product):
@@ -71,13 +75,19 @@ def product_infos(product):
         'image_small_url' : '',
     }
     for key in datas.keys():
-        datas[key] = product[key]
+        try:
+            datas[key] = product[key]
+        except:
+            pass
     return datas
 
 def fill_database():
     """Fills the database with products, excluding those without a nutriscore"""
-    for k in range(1500):
-        count = 0
+    print("Remplissage de la base de données...")
+    for k in range(9): 
+        # 9*1000 = 9000 products saved, minus duplicates or those not counted, so about 8000 products,
+        # to leave 2000 empty lines for User or saved data, as heroku allows a max of 10k lines
+        print("Récupération des produits de la page " + str(k))
         response = api_request(k)
         if len(response) == 0:
             break
@@ -88,27 +98,36 @@ def fill_database():
                 nutriscore = has_nutriscore(product)
                 infos = product_infos(product)
                 nutriments = product_nutriments(product)
-                Product.objects.create(
-                    name = name,
-                    nutriscore = nutriscore,
-                    category = infos.get("categories"),
-                    stores = infos.get('stores'),
-                    url = infos.get('url'),
-                    image_url = infos.get('image_url'),
-                    image_small_url = infos.get('image_small_url'),
-                    energy = nutriments.get('energy_100g'),
-                    sugar = nutriments.get('sugars_100g'),
-                    salt = nutriments.get('salt_100g'),
-                    fat = nutriments.get('fat_100g'),
-                    saturated_fat = nutriments.get('saturated-fat_100g'),
-                    sodium = nutriments.get('sodium_100g'),
-                    proteins = nutriments.get('proteins_100g'),
-                    carbohydrates = nutriments.get('carbohydrates_100g')
-                )
+                try:
+                    Product.objects.create(
+                        name = name,
+                        nutriscore = nutriscore,
+                        category = infos.get("categories"),
+                        stores = infos.get('stores'),
+                        url = infos.get('url'),
+                        image_url = infos.get('image_url'),
+                        image_small_url = infos.get('image_small_url'),
+                        energy = nutriments.get('energy_100g'),
+                        sugar = nutriments.get('sugars_100g'),
+                        salt = nutriments.get('salt_100g'),
+                        fat = nutriments.get('fat_100g'),
+                        saturated_fat = nutriments.get('saturated-fat_100g'),
+                        sodium = nutriments.get('sodium_100g'),
+                        proteins = nutriments.get('proteins_100g'),
+                        carbohydrates = nutriments.get('carbohydrates_100g')
+                    )
+                except psycopg2.errors.UniqueViolation:
+                    pass
+                except IntegrityError:
+                    pass
+                except DataError:
+                    pass
+                except ValueError:
+                    pass    
             else:
                 pass
-            count+= 1
-            print(count)
+        print("Récupération terminée, page suivante.")
+    print("La base de données des produits à bien été remplie.")
 
 def main():
     fill_database()

@@ -53,7 +53,7 @@ class Product(models.Model):
 
     name = models.CharField(max_length=255, verbose_name="Nom du produit")
     category = models.TextField(verbose_name="Catégories")
-    stores = models.CharField(max_length=100, null=True, verbose_name="Magasins")
+    stores = models.CharField(max_length=200, null=True, verbose_name="Magasins")
     nutriscore = models.CharField(max_length=1, verbose_name="Score nutritionnel")
     url = models.URLField(verbose_name="URL du produit", unique=True)
     image_url = models.URLField(verbose_name="URL de l'image du produit", unique=True)
