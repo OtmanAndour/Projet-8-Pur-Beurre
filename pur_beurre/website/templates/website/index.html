@@ -61,11 +61,15 @@
               <h1 class="text-uppercase text-white ">Du gras, oui, mais de qualité!</h1>
             </div>
             <div class="col-lg-8 align-self-baseline">
-              <p class="text-white-75 font-weight-light mb-5">Trouvez un produit de substitution pour ceux que vous consommez tout les jours!</p>
-              <div class="input-group">
-                <input class="form-control mr-sm-2" type="search" placeholder="Chercher" aria-label="Search">
-                <button type="submit" class="btn btn-primary " >Envoyer</button>
-              </div> 
+              <p class="text-white-75 font-weight-light mb-5">Trouvez un produit de substitution pour ceux que vous consommez tous les jours!</p>
+              <form action="{% url 'result' %}" method="get">
+                {% csrf_token %}
+                <div class="input-group">
+                  <input class="form-control mr-sm-2" type="text" name="search" placeholder="Chercher" aria-label="Search">
+                  <button type="submit" class="btn btn-primary " >Envoyer</button>
+              </form>
+              </div>
+            <p class="text-white"><br>{{ error }}</p>
             </div>
           </div>
         </div>

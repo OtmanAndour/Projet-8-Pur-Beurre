@@ -43,6 +43,7 @@ def has_nutriscore(product):
             return(product["nutrition_grades"])
         except KeyError:
             return False
+    #Othey way: return product.get(key, None)
 
 
 def product_nutriments(product):
@@ -118,11 +119,11 @@ def fill_database():
                     )
                 except psycopg2.errors.UniqueViolation:
                     pass
-                except IntegrityError:
+                except IntegrityError: #Manages duplicates
                     pass
-                except DataError:
+                except DataError: #For some reason, some products have a stores charfield longer than 200 chars, gets rid of them
                     pass
-                except ValueError:
+                except ValueError: #Some products have some of their nutriments not specified, gets rid of them
                     pass    
             else:
                 pass
