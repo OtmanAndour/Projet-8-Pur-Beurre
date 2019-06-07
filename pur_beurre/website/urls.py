@@ -10,4 +10,5 @@ urlpatterns = [
     re_path(r'^logout', auth_views.LogoutView.as_view(next_page = '/'),  name='logout'),
     re_path(r'^account', views.account, name="account"),
     re_path(r'^result', views.result, name="result"),
+    re_path(r'^product/(?P<product_id>.+)', views.product, name="product"),
 ]

@@ -8,6 +8,7 @@ from website.models import Product
 
 def get_product_infos(product):
     """ Get product informations """
+    id = product.id
     name = product.name
     nutriscore = product.nutriscore
     category = product.category
@@ -24,6 +25,7 @@ def get_product_infos(product):
     proteins = product.proteins
     carbohydrates = product.carbohydrates
     infos = { 
+        'id' : id,
         'name' : name,
         'nutriscore' : nutriscore,
         'category' : category,
@@ -50,9 +52,17 @@ def get_product(search):
     except IndexError:
         return None
 
+def get_product_by_id(id):
+    """ Retrieves first product matching the search, or None if no results"""
+    try:
+        product = Product.objects.filter(id=id)
+        return get_product_infos(product[0])
+    except IndexError:
+        return None
+
 def get_substitutes(product):
     category = product['category']
     cats = category.split(", ")
     category_search = cats[-1]
-    substitues = Product.objects.filter(category__icontains=category_search).order_by("nutriscore")[:6]
-    return substitues
+    substitutes = Product.objects.filter(category__icontains=category_search).order_by("nutriscore")[:6]
+    return substitutes

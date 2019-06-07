@@ -2,34 +2,50 @@
 
 {% block title %} Pur Beurre - {{product.name}} {% endblock %}
 
-{{product.name}} </br>
-{% for sub in substitutes %}
-    {{ sub.name }} {{ sub.nutriscore }} 
-{% endfor %}
+{% block extra_css %} 
+<style>
+#product:before {
+  background-image: url("{{ product.image_url}}");
+}
+</style>
+{% endblock %}
 
 {% block services_section %}
-<div id="product">
-  <div class="card" id="product-card">
-    <img class="card-img-bottom" src="{{ product.image_url }}" alt="Card image">
-    <div class="card-body" style="background-color: rgb(214, 202, 202)">
-      <h4 class="card-title">{{ product.name }}</h4>
-      <p class="card-text">Voici le produit que vous souhaitez substituer</p>
-      <a href="#" class="btn btn-primary stretched-link">Voir le produit</a>
-    </div>
+<div id="product" class="jumbotron jumbotron-fluid ">
+  <div  class="container text-center ">
+    <h1 class="display-4 ">{{ product.name }}</h1>
+    <p class="lead justify-content-center">Voici le produit que vous voulez substituer. <a href="{% url 'product' product.id %}" class="btn btn-primary ">Voir le produit</a></p>
   </div>
 </div>
 {% endblock %}
 
 {% block portfolio %}
-<div class="card-columns">
-  {% for sub in substitutes %}
-    <div class="card">
-      <img class="card-img" src="{{ sub.image_url }}" alt="Card image">
-      <div class="card-body" style="background-color: rgb(214, 202, 202)">
-        <h4 class="card-title">{{ sub.name }}</h4>
-        <a href="#" class="btn btn-primary stretched-link">Voir le produit</a>
+<div class="jumbotron jumbotron-fluid">
+  <h1>Vous pouvez remplacer cet aliment par :</h1>
+  <div class="container-fluid">
+    <div class="row justify-content-around">
+    {% for sub in substitutes %}
+      <div class="col-lg-4 d-flex" style="margin-top:80px">
+        <div class="row" >
+          <div class="col-12">
+            <div class="container" style="height:400px">
+              <img src="{{ sub.image_url }}" style="object-fit: cover; width: 100%; height: 100%">
+              <span class="topright">{{ sub.nutriscore|upper }}</span>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class=" text-center">
+              <h4>{{ sub.name }} </h4>
+              <div class="container justify-content-center">
+                <a href="{% url 'product' sub.id %}" class="btn btn-primary ">Voir le produit</a>
+                <a href="#" class="btn btn-primary ">Sauvegarder</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}
+

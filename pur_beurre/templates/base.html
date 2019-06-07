@@ -24,6 +24,8 @@
   <!-- Theme CSS - Includes Bootstrap -->
   <link href="static/css/creative.css" rel="stylesheet">
 
+  {% block extra_css %} {% endblock %}
+
 </head>
 
 <body id="page-top">
@@ -38,8 +40,8 @@
         <span id="welcome" class="navbar-brand mb-0 h1">Bonjour, {{ user.first_name }} !</span>   
       {% endif %}
       <a id="search-form" class="navbar-brand js-scroll-trigger mx-auto text-center w-25">
-          <form class="form-inline w-100">
-            <input class="form-control mr-sm-2" type="search" placeholder="Chercher" aria-label="Search">
+          <form class="form-inline w-100" action="{% url 'result' %}" method="get">
+            <input class="form-control mr-sm-2" type="text" name="search" placeholder="Chercher" aria-label="Search">
           </form> 
       </a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,10 +102,10 @@
   <footer class="bg-light py-5">
     <div class="row justify-content-around">
       <div class="col-sm-3 text-center">
-        <div class="small text-center text-muted">Mention légales</div>
+        <div class="text-center text-muted">Mention légales</div>
       </div>
       <div class="col-sm-3 text-center">
-        <div class="small text-center text-muted">Contact</div>
+        <div class="text-center text-muted">Contact</div>
       </div>
     </div>
   </footer>

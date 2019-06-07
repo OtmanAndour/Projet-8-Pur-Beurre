@@ -48,3 +48,7 @@ def result(request):
     else:
         substitutes = get_substitutes(product)
         return render(request, 'website/result.html', {'product' : product, 'substitutes' : substitutes})
+
+def product(request, product_id):
+    product = get_product_by_id(int(product_id))
+    return render(request, 'website/product.html', {'product' : product})
