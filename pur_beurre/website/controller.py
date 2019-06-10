@@ -64,5 +64,5 @@ def get_substitutes(product):
     category = product['category']
     cats = category.split(", ")
     category_search = cats[-1]
-    substitutes = Product.objects.filter(category__icontains=category_search).order_by("nutriscore")[:6]
+    substitutes = Product.objects.filter(category__icontains=category_search).order_by("nutriscore")
     return substitutes

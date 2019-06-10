@@ -130,7 +130,16 @@ def fill_database():
         print("Récupération terminée, page suivante.")
     print("La base de données des produits à bien été remplie.")
 
+def remove_duplicate():
+    """Removes multiple records of a same product"""
+    print("Suppression des doublons...")
+    for product in Product.objects.all():
+        if Product.objects.filter(name__iexact=product.name).count() > 1:
+            product.delete()
+    print("Suppression terminée.")
+
 def main():
     fill_database()
+    remove_duplicate()
    
 main()

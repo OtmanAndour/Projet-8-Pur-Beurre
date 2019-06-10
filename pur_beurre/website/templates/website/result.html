@@ -10,16 +10,14 @@
 </style>
 {% endblock %}
 
-{% block services_section %}
+{% block content %}
 <div id="product" class="jumbotron jumbotron-fluid ">
   <div  class="container text-center ">
     <h1 class="display-4 ">{{ product.name }}</h1>
     <p class="lead justify-content-center">Voici le produit que vous voulez substituer. <a href="{% url 'product' product.id %}" class="btn btn-primary ">Voir le produit</a></p>
   </div>
 </div>
-{% endblock %}
 
-{% block portfolio %}
 <div class="jumbotron jumbotron-fluid">
   <h1>Vous pouvez remplacer cet aliment par :</h1>
   <div class="container-fluid">
@@ -45,6 +43,23 @@
         </div>
       </div>
     {% endfor %}
+    <div class="pagination" style="margin-top: 80px">
+      <span class="step-links">
+          {% if substitutes.has_previous %}
+              <a href="?page=1" class="btn btn-primary ">&laquo; 1</a>
+              <a href="?page={{ substitutes.previous_page_number }} class="btn btn-primary "">Précédent</a>
+          {% endif %}
+  
+          <span class="current">
+              Page {{ substitutes.number }} sur {{ substitutes.paginator.num_pages }}.
+          </span>
+  
+          {% if substitutes.has_next %}
+              <a href="?page={{ substitutes.next_page_number }}" class="btn btn-primary ">Suivant</a>
+              <a href="?page={{ substitutes.paginator.num_pages }}" class="btn btn-primary ">{{ substitutes.paginator.num_pages }} &raquo;</a>
+          {% endif %}
+      </span>
+  </div>
   </div>
 </div>
 {% endblock %}
