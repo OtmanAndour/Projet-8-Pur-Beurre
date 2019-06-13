@@ -50,7 +50,7 @@ class User(AbstractUser):
     objects = UserManager()
 
 class Product(models.Model):
-
+    """ Product model """
     name = models.CharField(max_length=255, verbose_name="Nom du produit")
     category = models.TextField(verbose_name="Catégories")
     stores = models.CharField(max_length=200, null=True, verbose_name="Magasins")
