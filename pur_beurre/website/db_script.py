@@ -137,9 +137,3 @@ def remove_duplicate():
         if Product.objects.filter(name__iexact=product.name).count() > 1:
             product.delete()
     print("Suppression terminée.")
-
-def main():
-    fill_database()
-    remove_duplicate()
-   
-main()

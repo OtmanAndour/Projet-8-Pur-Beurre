@@ -11,12 +11,31 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+#a {
+  background: rgba(0, 107, 0, 0.7);
+}
+
+#b {
+  background: rgba(4, 240, 4, 0.7);
+}
+
+#c {
+  background: rgba(255, 255, 1, 0.7);
+}
+
+#d {
+  background: rgba(255, 144, 0, 0.603);
+}
+
+#e {
+  background: rgba(255, 60, 0, 0.699);
+}
+
 .topright {
   position: absolute;
   top: 8px;
   right: 0px;
   font-size: 40px;
-  background: rgb(0, 190, 0, 0.7);
   color: #fff;
   padding: 5px 20px;
   border-radius: 50%;

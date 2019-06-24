@@ -87,6 +87,9 @@ DATABASES = {
         'PASSWORD': 'bleach130',
         'HOST': '',
         'PORT': '5432',
+        'TEST': {
+            'NAME': 'test_db',
+        }
     }
 }
 
