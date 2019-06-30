@@ -33,8 +33,8 @@ class TestDbScript(TestCase):
             'image_small_url' : 'testimagesmallurl.com'
         } 
 
-#   Trying to mock, but not working
-#   def test_api_request(self, monkeypatch):
+   
+#    def test_api_request(self, monkeypatch):
 #       """ Testing the OFF API request """
 #       search_request = requests.get("https://fr.openfoodfacts.org/cgi/search.pl",{
 #               'action': 'process',
@@ -46,10 +46,10 @@ class TestDbScript(TestCase):
 #               'page': 1,
 #               'page_size' : 1000
 #               })
-#       with codecs.open("test_off_api_request.json","w", "utf-8-sig") as f:
+#       with codecs.open("website\tests\test_off_api_request.json","w", "utf-8-sig") as f:
 #           f.write(search_request.text)
 #           f.close()
-#       with codecs.open("test_off_api_request.json","r", "utf-8-sig") as f:
+#       with codecs.open("website\tests\test_off_api_request.json","r", "utf-8-sig") as f:
 #           results = json.loads(f.read())
 #
 #       class MockRequestsGet:

@@ -12,8 +12,8 @@ class TestForms(TestCase):
             'first_name': 'first_name',
             'last_name': 'last_name',
             'email': 'test_email@test.com',
-            'password1': 'password',
-            'password2': 'password',
+            'password1': 'ldoehs154',
+            'password2': 'ldoehs154',
         })
         self.assertTrue(form.is_valid())
 

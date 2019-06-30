@@ -8,8 +8,10 @@ from website.models import Product, User
 class TestViews(TestCase):
     """Views tests class"""
     
-    def setUp(self):
+    @classmethod
+    def setUpClass(cls):
         """ Create a test user and product """
+        super().setUpClass()
         test_user = User.objects.create_user(email='testuser', password='password')
         test_user.save()
         test_product = Product.objects.create(
@@ -29,6 +31,10 @@ class TestViews(TestCase):
             carbohydrates="4"
             )
         test_product.save()
+
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
 
 
     def test_index(self):
@@ -76,7 +82,7 @@ class TestViews(TestCase):
     def test_product(self):
         """Test product view"""
         client = Client()
-        response = client.get('/product/1')
+        response = client.get('/product/2')
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'website/product.html')
 
@@ -98,7 +104,7 @@ class TestViews(TestCase):
         """Test save view"""
         client = Client()
         client.login(email='testuser', password='password')
-        response = client.get('/save/3')
+        response = client.get('/save/2')
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'website/favorites.html')
 
@@ -106,7 +112,7 @@ class TestViews(TestCase):
         """Test remove view"""
         client = Client()
         client.login(email='testuser', password='password')
-        response = client.get('/remove/3')
+        response = client.get('/remove/2')
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'website/favorites.html')
 
