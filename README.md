@@ -30,7 +30,7 @@ python manage.py shell
 Une fois dans le shell, taper:
 
 ```
-exec(open('myapp/products.py').read())
+exec(open('website/run_db_script.py').read())
 ```
 
 Vous pouvez lancer le projet en local avec:
