@@ -2,3 +2,5 @@ env
 startbootstrap-creative-gh-pages/
 api_test.py
 api_test.json
+.coverage
+htmlcov
